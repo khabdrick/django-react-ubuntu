@@ -17,11 +17,27 @@ def api_endpoints(request):
     return Response(api_urls)
 
 @api_view(['POST'])
-def add_contact(request):
+def create_contact(request):
 	contact = ContactSerializer(data=request.data)
 
 	if contact.is_valid():
 		contact.save()
 		return Response(contact.data)
+	else:
+		return Response(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+def view_contacts(request):
+	
+	# checking for the parameters from the URL
+	if request.query_params:
+		contacts = Contact.objects.filter(**request.query_param.dict())
+	else:
+		contacts = Contact.objects.all()
+
+	# if there is something in contacts else raise error
+	if contacts:
+		data = ContactSerializer(contacts)
+		return Response(data)
 	else:
 		return Response(status=status.HTTP_404_NOT_FOUND)
