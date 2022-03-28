@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import serializers
+from rest_framework import generics
 from rest_framework import status
 from rest_framework.decorators import api_view
 from .serializers import ContactSerializer
@@ -27,21 +27,25 @@ def create_contact(request):
 	else:
 		return Response(status=status.HTTP_404_NOT_FOUND)
 
-@api_view(['GET'])
-def view_contacts(request):
-	
-	# checking for the parameters from the URL
-	if request.query_params:
-		contacts = Contact.objects.filter(**request.query_param.dict())
-	else:
-		contacts = Contact.objects.all()
+# @api_view(['GET'])
+# def view_contacts(request):
+# 	# checking for the parameters from the URL
+# 	if request.query_params:
+# 		contacts = Contact.objects.filter(**request.query_param.dict())
+# 	else:
+# 		contacts = Contact.objects.all()
+    
+# 	# if there is something in contacts else raise error
+# 	if contacts:
+# 		data = ContactSerializer(contacts)
+# 		return Response(data.data)
+# 	else:
+# 		return Response(status=status.HTTP_404_NOT_FOUND)
 
-	# if there is something in contacts else raise error
-	if contacts:
-		data = ContactSerializer(contacts)
-		return Response(data)
-	else:
-		return Response(status=status.HTTP_404_NOT_FOUND)
+class UserList(generics.ListCreateAPIView):
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
+
 
 @api_view(['POST'])
 def update_contacts(request, pk):
@@ -54,7 +58,7 @@ def update_contacts(request, pk):
     else:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-@api_view(['DELETE'])
+@api_view(['DELETE', "GET"])
 def delete_contact(request, pk):
     contact = get_object_or_404(Contact, pk=pk)
     contact.delete()
