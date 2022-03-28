@@ -43,7 +43,7 @@ def view_contacts(request):
 		return Response(status=status.HTTP_404_NOT_FOUND)
 
 @api_view(['POST'])
-def update_items(request, pk):
+def update_contacts(request, pk):
     contact = Contact.objects.get(pk=pk)
     data = ContactSerializer(instance=contact, data=request.data)
   
