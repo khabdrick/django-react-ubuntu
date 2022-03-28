@@ -27,36 +27,14 @@ def create_contact(request):
 	else:
 		return Response(status=status.HTTP_404_NOT_FOUND)
 
-# @api_view(['GET'])
-# def view_contacts(request):
-# 	# checking for the parameters from the URL
-# 	if request.query_params:
-# 		contacts = Contact.objects.filter(**request.query_param.dict())
-# 	else:
-# 		contacts = Contact.objects.all()
-    
-# 	# if there is something in contacts else raise error
-# 	if contacts:
-# 		data = ContactSerializer(contacts)
-# 		return Response(data.data)
-# 	else:
-# 		return Response(status=status.HTTP_404_NOT_FOUND)
 
-class UserList(generics.ListCreateAPIView):
+class ContactList(generics.ListCreateAPIView):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
 
-
-@api_view(['POST'])
-def update_contacts(request, pk):
-    contact = Contact.objects.get(pk=pk)
-    data = ContactSerializer(instance=contact, data=request.data)
-  
-    if data.is_valid():
-        data.save()
-        return Response(data.data)
-    else:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+class UpdateContact(generics.UpdateAPIView):
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
 
 @api_view(['DELETE', "GET"])
 def delete_contact(request, pk):
