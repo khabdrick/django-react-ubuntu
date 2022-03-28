@@ -41,3 +41,4 @@ def view_contacts(request):
 		return Response(data)
 	else:
 		return Response(status=status.HTTP_404_NOT_FOUND)
+
