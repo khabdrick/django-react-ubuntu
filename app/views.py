@@ -55,7 +55,7 @@ def update_contacts(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
 @api_view(['DELETE'])
-def delete_items(request, pk):
+def delete_contact(request, pk):
     contact = get_object_or_404(Contact, pk=pk)
     contact.delete()
     return Response(status=status.HTTP_202_ACCEPTED)
