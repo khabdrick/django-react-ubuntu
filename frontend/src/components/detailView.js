@@ -9,13 +9,14 @@ export const Detail = () => {
     const [contact, setContact] = useState([]);
     const [updateContact, setUpadteContact] = useState('');
     const { id } = useParams();
+
     useEffect(() => {
         fetch(`/app/${id}`)
         .then((response) => response.json())
         .then((data) => setContact(data));
     },[id]);
     const handleFormChange = (inputValue) => {
-        setUpdateTodo(inputValue);
+        setUpadteContact(inputValue);
       };
     
       const handleFormSubmit = () => {
@@ -39,7 +40,7 @@ export const Detail = () => {
       return (
         <div>
           <Form
-            input={updateTodo}
+            input={updateContact}
             onFormChange={handleFormChange}
             onFormSubmit={handleFormSubmit}
           />
