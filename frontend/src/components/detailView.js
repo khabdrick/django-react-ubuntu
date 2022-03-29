@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Delete } from "../components/deletePage";
+import { Delete } from "./deleteButton";
 import { Form } from "../components/form";
 import { useHistory } from "react-router-dom";
 
