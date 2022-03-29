@@ -1,28 +1,20 @@
 import React from "react";
-import "./App.css";
-import { ContactPage } from "./components/ContactList";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Detail } from "./components/detailView";
+import {Link} from "react-router-dom"
 
-function App() {
+export const Card = ({ listOfContacts }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              < ContactPage />
-            </Route>
-            <Route path="/:id">
-              <Detail />
-            </Route>
-          </Switch>
-        </Router>
-      </header>
-    </div>
+    <>
+      {listOfContacts.map(contact => {
+          // console.log(todo)
+        return (
+            
+          <ul key={contact.id}>
+              
+
+            <li className="links"><Link to={`${contact.id}`}>{contact.detail}</Link></li>
+          </ul>
+        );
+      })}
+    </>
   );
-}
-
-export default App;
-
-
+};
