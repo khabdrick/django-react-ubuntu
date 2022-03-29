@@ -23,7 +23,7 @@ export const Detail = () => {
         fetch(`/api/${id}`, {
           method: "PUT",
           body: JSON.stringify({
-            detail: updateTodo,
+            detail: updateContact,
           }),
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -45,13 +45,13 @@ export const Detail = () => {
             onFormSubmit={handleFormSubmit}
           />
            <br/>
-          {todo.map((data) => (
+          {contact.map((data) => (
             <div key="id">Detail: {data.detail}</div>
           ))}
           <br />
           <Delete id={id} /><p>Fill the above to update</p>
           &nbsp;&nbsp;
-          <Link to="/">Go Back to Todo List</Link>
+          <Link to="/">Go Back to Contact List</Link>
         </div>
 
     );
