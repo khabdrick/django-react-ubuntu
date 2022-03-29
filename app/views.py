@@ -27,6 +27,10 @@ def create_contact(request):
 	else:
 		return Response(status=status.HTTP_404_NOT_FOUND)
 
+class ContactDetail(generics.RetrieveAPIView):
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
+
 
 class ContactList(generics.ListCreateAPIView):
     queryset = Contact.objects.all()
