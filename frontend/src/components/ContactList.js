@@ -12,8 +12,10 @@ export const ContactPage = () => {
         if (response.ok) {
           return response.json();
         }
+        
       })
       .then((data) => setContact(data));
+      
   }, []);
 
   const handleFormChange = (inputValue) => {
