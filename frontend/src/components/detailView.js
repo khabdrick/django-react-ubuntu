@@ -9,18 +9,18 @@ export const Detail = () => {
     const [contact, setContact] = useState([]);
     const [updateContact, setUpadteContact] = useState('');
     const { id } = useParams();
-
+    
     useEffect(() => {
         fetch(`/app/${id}`)
-        .then((response) => response.json())
-        .then((data) => setContact(data));
-    },[id]);
+          .then((response) => response.json())
+          .then(data => setContact(data));
+      },[id]);   
     const handleFormChange = (inputValue) => {
         setUpadteContact(inputValue);
       };
     
       const handleFormSubmit = () => {
-        fetch(`/api/${id}`, {
+        fetch(`${id}`, {
           method: "PUT",
           body: JSON.stringify({
             detail: updateContact,
@@ -36,7 +36,8 @@ export const Detail = () => {
           })
       
       };
-    
+
+
       return (
         <div>
           <Form
@@ -45,9 +46,10 @@ export const Detail = () => {
             onFormSubmit={handleFormSubmit}
           />
            <br/>
-          {contact.map((data) => (
-            <div key="id">Detail: {data.detail}</div>
-          ))}
+           {/* {contact.map((json) => (
+        <div key="id">Detail: </div>
+      ))} */}
+      <div>{contact.name}: {contact.phone_number}</div>
           <br />
           <Delete id={id} /><p>Fill the above to update</p>
           &nbsp;&nbsp;
