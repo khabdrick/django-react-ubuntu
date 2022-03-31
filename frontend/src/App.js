@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { ContactPage } from "./components/ContactList";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Detail } from "./components/detailView";
 
 function App() {
   return (

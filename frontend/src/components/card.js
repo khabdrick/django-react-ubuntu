@@ -5,13 +5,13 @@ export const Card = ({ listOfContacts }) => {
   return (
     <>
       {listOfContacts.map(contact => {
-          // console.log(todo)
+          console.log(contact.id)
         return (
             
           <ul key={contact.id}>
               
 
-            <li className="links"><Link to={`${contact.id}`}>{contact.detail}</Link></li>
+            <li className="links"><Link to={`${contact.id}`}>{contact.name}: {contact.phone_number}</Link></li>
           </ul>
         );
       })}
