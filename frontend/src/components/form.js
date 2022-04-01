@@ -10,11 +10,6 @@ export const Form = () => {
     formField.append('name',name1)
     formField.append('phone_number',phone_number)
 
-
-    // const handleSubmit = (event)=>{
-    //     event.preventDefault()
-    //     onFormSubmit()
-    // }
     const handleFormSubmit = async () => {
         
         
