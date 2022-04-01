@@ -4,7 +4,12 @@ import { Form } from "./form";
 
 export const ContactPage = () => {
   const [contact, setContact] = useState([]);
-  const [addContact, setAddContact] = useState("");
+  const [name1, setName1] = useState(null)
+  const [phone_number, setPhone_number] = useState(null) 
+  
+  let formField = new FormData()
+  formField.append('name',name1)
+  formField.append('phone_number',phone_number)
 
   useEffect(() => {
     fetch("/app/list")
@@ -18,16 +23,12 @@ export const ContactPage = () => {
       
   }, []);
 
-  const handleFormChange = (inputValue) => {
-    setAddContact(inputValue);
-  };
+  
 
   const handleFormSubmit = () => {
     fetch("/app/create", {
       method: "POST",
-      body: JSON.stringify({
-        detail: addContact,
-      }),
+      body:formField,
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
@@ -35,7 +36,6 @@ export const ContactPage = () => {
       .then((response) => response.json())
       .then((message) => {
         console.log(message);
-        setAddContact("");
         getUpdate();
       });
   };
@@ -52,11 +52,8 @@ export const ContactPage = () => {
 
   return (
     <>
-      <Form
-        input={addContact}
-        onFormChange={handleFormChange}
-        onFormSubmit={handleFormSubmit}
-      />
+      <Form/>
+
       <Card listOfContacts={contact} />
     </>
   );
