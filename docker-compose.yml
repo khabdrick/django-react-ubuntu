@@ -1,0 +1,16 @@
+services:
+  api:
+    build:  ./api
+    ports: 
+    - "8000:8000"
+    volumes: 
+    - ./api:/api
+
+  web:
+    build: ./frontend
+    ports: 
+      - "3000:8000"
+    volumes: 
+      - ./frontend:/usr/src/app
+    depends_on: 
+      - api
